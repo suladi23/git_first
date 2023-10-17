@@ -19,7 +19,7 @@ library(dplyr)
 
 ### Multiple lines on a single graph
 
-```{r}
+```{r dax stock}
 eustock <- as.data.frame(EuStockMarkets)
 eustock <- eustock |> mutate(time=1:n())
 ggplot(eustock, aes(x=time, y=DAX)) +
@@ -28,7 +28,7 @@ ggplot(eustock, aes(x=time, y=DAX)) +
 
 ### Strong solution
 
-```{r}
+```{r dax + cac stock}
 ggplot(eustock, aes(x=time, y=DAX)) +
   geom_line() +
   geom_line(mapping = aes(y=CAC), color="red")
@@ -41,19 +41,20 @@ we miss association between colors and names
 
 #### Tidyr based solution
 
-```{r}
+```{r long eu stock}
 long_eustock <- 
   eustock |> 
   pivot_longer(-time, names_to = "stock index", values_to = "Value")
 ```
 
-```{r}
+```{r long eu stock lines}
 ggplot(long_eustock, aes(x=time, y=Value, group: `stock index`), color = `stock index`) +
   geom_line()
 ```
 
-```{r}
+```{r long eu facet}
 ggplot(long_eustock, aes(x=time, y=Value, group: `stock index`), color = `stock index`) +
   geom_line() +
   facet_wrap(~`stock index`, ncol=1, scales = "free_y")
 ```
+
