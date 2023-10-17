@@ -3,6 +3,7 @@ title: "Tidyr"
 author: "Disem_Sula"
 format: html
 editor: visual
+keep-md: true
 ---
 
 ## Tidyr and ggplot2
