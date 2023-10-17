@@ -43,16 +43,17 @@ we miss association between colors and names
 
 ```{r}
 long_eustock <- 
-  eustock |> pivot_longer(-time, names_to = "stock index", values_to = "Value")
+  eustock |> 
+  pivot_longer(-time, names_to = "stock index", values_to = "Value")
 ```
 
 ```{r}
-ggplot(long_eustock, aes(x=time, y=Value, group_by(`Stock Index`)), color = `Stock Index`) +
+ggplot(long_eustock, aes(x=time, y=Value, group: `stock index`), color = `stock index`) +
   geom_line()
 ```
 
 ```{r}
-#ggplot(long_eustock, aes(x=time, y=Value, group: `Stock Index`), color = `Stock Index`) +
- # geom_line() +
-  #facet_wrap(~`Stock Index`, ncol=1, scales = "free_y")
+ggplot(long_eustock, aes(x=time, y=Value, group: `stock index`), color = `stock index`) +
+  geom_line() +
+  facet_wrap(~`stock index`, ncol=1, scales = "free_y")
 ```
